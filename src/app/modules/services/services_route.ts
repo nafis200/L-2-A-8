@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.post('/',ServicesController.CreateServices)
 router.get('/',ServicesController.getAllFromServicesController)
+router.get('/status',ServicesController.getPendingServicesController)
+
 router.get(
     '/:id',ServicesController.getByIdServicesDB
 );

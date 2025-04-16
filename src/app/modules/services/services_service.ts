@@ -55,10 +55,27 @@ const  updateServicesIntoDBController = async (id: string, data: any) => {
   return result;
 };
 
+const getPendingServices = async()=>{
+  const now = new Date();
+    const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+    const services = await prisma.serviceRecord.findMany({
+      where: {
+        status: {
+          in: ['pending', 'in_progress'],
+        },
+        serviceDate: {
+          lt: sevenDaysAgo,
+        },
+      },
+    });
+    return services
+}
+
 
 export const ServicesService = {
   CreateServices,
   getAllFromServicesController,
   getByIdServicesDB,
   updateServicesIntoDBController,
+  getPendingServices
 };

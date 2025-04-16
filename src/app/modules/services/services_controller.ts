@@ -50,6 +50,16 @@ const updateServicesIntoDBController:RequestHandler = catchAsync(async (req: Req
     })
 })
 
+const getPendingServicesController:RequestHandler = catchAsync(async(req:Request,res:Response)=>{
+    const result = await ServicesService.getPendingServices();
+    sendResponse(res,{
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Overdue or pending services fetched successfully",
+        data: result
+    })
+})
+
 
 
 
@@ -58,4 +68,5 @@ export const ServicesController = {
     getAllFromServicesController,
     getByIdServicesDB,
     updateServicesIntoDBController,
+    getPendingServicesController
 }
