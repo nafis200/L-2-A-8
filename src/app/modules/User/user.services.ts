@@ -30,12 +30,29 @@ const createUser = async (data: any) => {
 };
 
 const getAllFromUser = async()=>{
-   const result = await prisma.customer.findMany({})
+   const result = await prisma.customer.findMany({
+    orderBy: {
+      createdAt: "desc"
+    }
+
+   })
    return result
 }
+
+const getByIdFromDB = async (id: string) => {
+  console.log(id)
+  const result = await prisma.customer.findUnique({
+      where: {
+        customerId:id
+      }
+  })
+
+  return result;
+};
 
 
 export const userService = {
   createUser,
-  getAllFromUser
+  getAllFromUser,
+  getByIdFromDB
 };

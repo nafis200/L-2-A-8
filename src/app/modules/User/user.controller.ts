@@ -24,7 +24,20 @@ const getAllFromUserController:RequestHandler = catchAsync(async(req:Request,res
     })
 })
 
+const getByIdFromDB:RequestHandler = catchAsync(async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    const result = await userService.getByIdFromDB(id);
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "User data fetched by id!",
+        data: result
+    });
+})
+
 export const userController = {
     CreateUser,
-    getAllFromUserController
+    getAllFromUserController,
+    getByIdFromDB
 }
