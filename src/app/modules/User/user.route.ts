@@ -1,4 +1,4 @@
-import express, { NextFunction, Request, Response } from 'express';
+import express from 'express';
 import { userController } from './user.controller';
 
 
@@ -11,3 +11,5 @@ router.get(
 );
 router.put('/:id',userController.updateUserIntoDBController)
 export const userRoutes = router;
+
+router.delete('/:id',userController.deleteUserFromDBController)

@@ -29,50 +29,61 @@ const createUser = async (data: any) => {
   return user;
 };
 
-const getAllFromUser = async()=>{
-   const result = await prisma.customer.findMany({
+const getAllFromUser = async () => {
+  const result = await prisma.customer.findMany({
     orderBy: {
-      createdAt: "desc"
-    }
-
-   })
-   return result
-}
+      createdAt: "desc",
+    },
+  });
+  return result;
+};
 
 const getByIdFromDB = async (id: string) => {
-  console.log(id)
+  console.log(id);
   const result = await prisma.customer.findUnique({
-      where: {
-        customerId:id
-      }
-  })
+    where: {
+      customerId: id,
+    },
+  });
 
   return result;
 };
 
-const updateUserIntoDB = async (id: string, data: any)=> {
-
-
+const updateUserIntoDB = async (id: string, data: any) => {
   await prisma.customer.findUniqueOrThrow({
-      where: {
-        customerId:id
-      }
+    where: {
+      customerId: id,
+    },
   });
 
   const result = await prisma.customer.update({
-      where: {
-        customerId:id
-      },
-      data
+    where: {
+      customerId: id,
+    },
+    data,
   });
 
   return result;
 };
 
+const deleteUserFromDB = async (id: string) => {
+  await prisma.customer.findUniqueOrThrow({
+    where: {
+      customerId: id,
+    },
+  });
+
+  const result = await prisma.customer.delete({
+    where: { customerId: id },
+  });
+
+  return result;
+};
 
 export const userService = {
   createUser,
   getAllFromUser,
   getByIdFromDB,
-  updateUserIntoDB
+  updateUserIntoDB,
+  deleteUserFromDB,
 };
