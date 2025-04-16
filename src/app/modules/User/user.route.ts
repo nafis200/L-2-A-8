@@ -13,3 +13,5 @@ router.put('/:id',userController.updateUserIntoDBController)
 export const userRoutes = router;
 
 router.delete('/:id',userController.deleteUserFromDBController)
+
+export const useRoutes = router;
