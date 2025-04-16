@@ -5,8 +5,9 @@ import { Request, RequestHandler, Response } from "express";
 import httpStatus from "http-status";
 import { ServicesService } from "./services_service";
 
+
 const CreateServices:RequestHandler = catchAsync(async(req:Request,res:Response)=>{
-    const result = await ServicesService.createServices(req.body);
+    const result = await ServicesService.CreateServices(req.body);
     sendResponse(res,{
         statusCode: httpStatus.OK,
         success: true,
@@ -16,7 +17,7 @@ const CreateServices:RequestHandler = catchAsync(async(req:Request,res:Response)
 })
 
 const getAllFromServicesController:RequestHandler = catchAsync(async(req:Request,res:Response)=>{
-    const result = await ServicesService.getAllServicesUser();
+    const result = await ServicesService.getAllFromServicesController();
     sendResponse(res,{
         statusCode: httpStatus.OK,
         success: true,
@@ -28,7 +29,7 @@ const getAllFromServicesController:RequestHandler = catchAsync(async(req:Request
 const getByIdServicesDB:RequestHandler = catchAsync(async (req: Request, res: Response) => {
     const { id } = req.params;
 
-    const result = await ServicesService.getByServicesFromDB(id);
+    const result = await ServicesService.getByIdServicesDB(id);
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
@@ -40,7 +41,7 @@ const getByIdServicesDB:RequestHandler = catchAsync(async (req: Request, res: Re
 const updateServicesIntoDBController:RequestHandler = catchAsync(async (req: Request, res: Response) => {
     const { id } = req.params;
 
-    const result = await ServicesService.updateUserIntoDB(id, req.body);
+    const result = await ServicesService.updateServicesIntoDBController(id, req.body);
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,

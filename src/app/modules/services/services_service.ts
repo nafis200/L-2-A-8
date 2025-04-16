@@ -5,18 +5,13 @@ import httpStatus from "http-status";
 
 const prisma = new PrismaClient();
 
-const createServices = async (data: any) => {
-  await prisma.bike.findUniqueOrThrow({
-    where: {
-      bikeId: data.bikeId,
-    },
-  });
+const  CreateServices = async (data: any) => {
 
   const userData = {
     bikeId: data.bikeId,
     serviceDate: data.serviceDate,
     description: data.description,
-    status: data.status,
+    status:data.status
   };
 
   const user = await prisma.serviceRecord.create({
@@ -26,12 +21,13 @@ const createServices = async (data: any) => {
   return user;
 };
 
-const getAllServicesUser = async () => {
+const getAllFromServicesController = async () => {
   const result = await prisma.serviceRecord.findMany({});
   return result;
 };
 
-const getByServicesFromDB = async (id: string) => {
+const getByIdServicesDB = async (id: string) => {
+  console.log(id);
   const result = await prisma.serviceRecord.findUnique({
     where: {
       serviceId: id,
@@ -41,7 +37,8 @@ const getByServicesFromDB = async (id: string) => {
   return result;
 };
 
-const updateUserIntoDB = async (id: string, data: any) => {
+const  updateServicesIntoDBController = async (id: string, data: any) => {
+  
   await prisma.serviceRecord.findUniqueOrThrow({
     where: {
       serviceId: id,
@@ -58,9 +55,10 @@ const updateUserIntoDB = async (id: string, data: any) => {
   return result;
 };
 
+
 export const ServicesService = {
-  createServices,
-  getAllServicesUser,
-  getByServicesFromDB,
-  updateUserIntoDB,
+  CreateServices,
+  getAllFromServicesController,
+  getByIdServicesDB,
+  updateServicesIntoDBController,
 };
