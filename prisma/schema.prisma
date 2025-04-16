@@ -1,0 +1,97 @@
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+// generator client {
+//   provider = "prisma-client-js"
+// }
+
+// model User {
+//   id      Int      @id @default(autoincrement())
+//   email   String   @unique
+//   name    String?
+//   role    Role     @default(USER)
+//   posts   Post[]
+//   profile Profile?
+// }
+
+// model Profile {
+//   id     Int    @id @default(autoincrement())
+//   bio    String
+//   user   User   @relation(fields: [userId], references: [id])
+//   userId Int    @unique
+// }
+
+// model Post {
+//   id         Int        @id @default(autoincrement())
+//   createdAt  DateTime   @default(now())
+//   updatedAt  DateTime   @updatedAt
+//   title      String
+//   published  Boolean    @default(false)
+//   author     User       @relation(fields: [authorId], references: [id])
+//   authorId   Int
+//   categories Category[]
+// }
+
+// model Category {
+//   id    Int    @id @default(autoincrement())
+//   name  String
+//   posts Post[]
+// }
+
+// enum Role {
+//   USER
+//   ADMIN
+// }
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+
+model Customer {
+  customerId String   @id @default(uuid())
+  name       String
+  email      String   @unique
+  phone      String
+  createdAt  DateTime @default(now())
+  Bike Bike[]
+}
+
+model Bike {
+  bikeId     String   @id @default(uuid())
+  brand      String
+  model      String
+  year       Int
+  customerId String
+
+  customer   Customer @relation(fields: [customerId], references: [customerId])
+  ServiceRecord ServiceRecord[]
+}
+
+model ServiceRecord {
+  serviceId      String   @id @default(uuid())
+  bikeId         String
+  serviceDate    DateTime
+  completionDate DateTime? 
+  description    String
+  status         ServiceStatus  
+
+  bike           Bike      @relation(fields: [bikeId], references: [bikeId])
+}
+
+enum ServiceStatus {
+  in_progress
+  pending
+  done
+}
+
+
+
+
