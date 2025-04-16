@@ -35,6 +35,9 @@ const getByIdBikeFromDB = async (id: string) => {
     where: {
       bikeId: id,
     },
+    include:{
+       customer:true
+    }
   });
 
   return result;
