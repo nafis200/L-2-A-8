@@ -36,8 +36,21 @@ const getByIdFromDB:RequestHandler = catchAsync(async (req: Request, res: Respon
     });
 })
 
+const updateUserIntoDBController:RequestHandler = catchAsync(async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    const result = await userService.updateUserIntoDB(id, req.body);
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "User data updated!",
+        data: result
+    })
+})
+
 export const userController = {
     CreateUser,
     getAllFromUserController,
-    getByIdFromDB
+    getByIdFromDB,
+    updateUserIntoDBController
 }

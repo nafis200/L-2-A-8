@@ -9,5 +9,5 @@ router.get('/',userController.getAllFromUserController)
 router.get(
     '/:id',userController.getByIdFromDB
 );
-
+router.put('/:id',userController.updateUserIntoDBController)
 export const userRoutes = router;

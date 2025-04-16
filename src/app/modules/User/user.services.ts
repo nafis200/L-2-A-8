@@ -50,9 +50,29 @@ const getByIdFromDB = async (id: string) => {
   return result;
 };
 
+const updateUserIntoDB = async (id: string, data: any)=> {
+
+
+  await prisma.customer.findUniqueOrThrow({
+      where: {
+        customerId:id
+      }
+  });
+
+  const result = await prisma.customer.update({
+      where: {
+        customerId:id
+      },
+      data
+  });
+
+  return result;
+};
+
 
 export const userService = {
   createUser,
   getAllFromUser,
-  getByIdFromDB
+  getByIdFromDB,
+  updateUserIntoDB
 };
