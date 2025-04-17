@@ -3,8 +3,8 @@
 This is a backend RESTful API built for managing a bike servicing center's operations. It enables the management of customers, bikes, and service records with additional support for tracking pending and completed services.
 
 🌐 Live API Link
-🔗 - [@vitejs/plugin-react](https://assignment3-ten-beta.vercel.app/) vercel link
-- [@vitejs/plugin-react-swc](https://github.com/nafis200/L-2-A-3) uses Github Link
+🔗 - [@Live-Link](https://assignment-8-sand-zeta.vercel.app/) vercel link
+- [@https://github.com/nafis200/L-2-A-8](https://github.com/nafis200/L-2-A-3) uses Github Link
 
 🧰 Tech Stack
 Backend Framework: Node.js, Express.js
@@ -22,7 +22,7 @@ Deployment: Render
 # Setup Guide
 Clone the repository
 
-- git clone https://github.com/your-username/bike-servicing-api.git
+- git clone https://github.com/nafis200/L-2-A-8
 
 - cd bike-servicing-api
 Install dependencies
@@ -32,7 +32,7 @@ Install dependencies
 # Set up environment variables
 Create a .env file in the root directory with the following:
 
-- DATABASE_URL="postgresql://postgres:200429@localhost:5432/assignment8?schema=public"
+- DATABASE_URL="postgresql://assignment8_user:Qtlys91G9D6ywqazQRx3FOxywpeVHZ7B@dpg-cvvurpmuk2gs73dn46pg-a.virginia-postgres.render.com/assignment8"
 - PORT=3000
 
 - npx prisma migrate dev --name init

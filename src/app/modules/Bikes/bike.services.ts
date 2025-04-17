@@ -1,7 +1,9 @@
 import * as bcrypt from "bcrypt";
-import { PrismaClient } from "../../../generated/prisma";
 import ApiError from "../../errors/ApiError";
 import httpStatus from "http-status";
+import { PrismaClient } from "@prisma/client";
+// import { PrismaClient } from "../../../generated/prisma";
+
 
 const prisma = new PrismaClient();
 
